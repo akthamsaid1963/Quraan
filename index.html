@@ -1,81 +1,167 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#123d32">
+<meta name="description" content="موقع سورة البقرة برسم مصحف المدينة، مع التفسير الميسر وتلاوات القراء وإمكانية تحميل السورة MP3.">
 <title>سورة البقرة | نور القرآن</title>
+<link rel="preconnect" href="https://api.alquran.cloud">
+<link rel="preconnect" href="https://www.mp3quran.net">
 <style>
 :root{--green:#123d32;--green2:#1d5b49;--gold:#c6a45b;--paper:#fbf8ef;--ink:#26352f;--muted:#748078;--line:#e8e1d1}
 *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Naskh Arabic","Amiri","Traditional Arabic",serif}
-header{background:linear-gradient(130deg,#0e3029,#1c5a47);color:#fff;padding:26px 18px 30px;text-align:center;border-bottom:4px solid var(--gold)}
-.brand{font-size:14px;color:#e9d9ae;letter-spacing:.5px}.hero h1{font-size:clamp(32px,5vw,48px);margin:10px 0 3px}.hero p{margin:0;color:#e2e9e3;font-size:16px}
-main{max-width:1050px;margin:22px auto;padding:0 16px}
-.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;margin:14px 0;box-shadow:0 8px 26px #30250d0a}
-.controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;align-items:end}
-label{display:block;font-size:14px;color:var(--muted);margin:0 0 6px}
-select,input,button{font:inherit;border-radius:10px;border:1px solid #dcd5c6;padding:10px 12px;background:#fff;color:var(--ink);width:100%}
+header{background:radial-gradient(circle at 50% 0,#28664f 0,#123d32 58%,#0b2923 100%);color:#fff;padding:30px 18px 34px;text-align:center;border-bottom:4px solid var(--gold)}
+.brand{font-size:14px;color:#ead9aa}.hero h1{font-size:clamp(34px,6vw,52px);margin:12px 0 5px}.hero p{margin:0;color:#e2e9e3;font-size:16px}
+main{max-width:1080px;margin:24px auto;padding:0 16px}.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:19px;margin:15px 0;box-shadow:0 8px 26px #30250d0a}
+h2{color:var(--green);font-size:22px;margin:0 0 15px}.controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;align-items:end}
+label{display:block;font-size:14px;color:var(--muted);margin:0 0 6px}select,input,button{font:inherit;border-radius:10px;border:1px solid #dcd5c6;padding:10px 12px;background:#fff;color:var(--ink);width:100%}
 button{cursor:pointer;background:var(--green);color:white;border-color:var(--green);transition:.2s}button:hover{background:var(--green2)}button.secondary{background:#f4f0e5;color:var(--green);border-color:var(--line)}button:disabled{opacity:.45;cursor:not-allowed}
-.player{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.player button{width:auto;min-width:105px}.player audio{width:100%;margin-top:10px}
-.status{font-size:13px;color:var(--muted);margin-top:8px}
-.ayah{padding:20px 8px;border-bottom:1px solid var(--line);scroll-margin:20px}.ayah:last-child{border:0}
-.ayah.active{background:#f5f0e2;border-radius:12px;outline:1px solid #dfcca0}
-.ayah-text{font-size:clamp(23px,3vw,31px);line-height:2.15;text-align:justify;color:#172f28}
-.ayah-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px}
-.num{display:inline-grid;place-items:center;width:30px;height:30px;border:1px solid var(--gold);border-radius:50%;color:#8b6c2f;font:14px sans-serif;flex-shrink:0}
-.ayah-actions button{width:auto;font-size:13px;padding:6px 11px}
-.tafsir{display:none;background:#f8f6ef;border-right:3px solid var(--gold);padding:12px 14px;margin-top:12px;border-radius:8px;line-height:1.9;font-size:17px}
-.tafsir.show{display:block}.section-title{color:var(--green);font-size:21px;margin:0 0 14px}
-.bismillah{text-align:center;font-size:28px;color:var(--green);padding:10px}
-footer{text-align:center;color:var(--muted);padding:28px 15px;font-size:13px}
-.small{font-size:12px;color:var(--muted)}
-@media(max-width:600px){.panel{padding:13px}.player button{flex:1}.ayah{padding:15px 4px}}
+.player{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-top:15px}.player button{width:auto;min-width:105px}.player audio{width:100%;margin-top:8px}
+.status{font-size:13px;color:var(--muted);margin-top:9px;line-height:1.8}.download{display:inline-block;width:auto;text-decoration:none;padding:9px 14px;border-radius:10px;margin-top:10px;background:#f4f0e5;color:var(--green);border:1px solid var(--line)}
+.bismillah{text-align:center;font-size:29px;color:var(--green);padding:8px 0 18px}.small{font-size:13px;color:var(--muted);line-height:1.8}
+.ayah{padding:21px 8px;border-bottom:1px solid var(--line);scroll-margin:20px}.ayah:last-child{border:0}.ayah.active{background:#f5f0e2;border-radius:12px;outline:1px solid #dfcca0}
+.ayah-text{font-size:clamp(24px,3.2vw,33px);line-height:2.15;text-align:justify;color:#172f28}.ayah-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:11px}
+.num{display:inline-grid;place-items:center;width:31px;height:31px;border:1px solid var(--gold);border-radius:50%;color:#8b6c2f;font:14px sans-serif;flex-shrink:0}
+.ayah-actions button{width:auto;font-size:13px;padding:7px 12px}.tafsir{display:none;background:#f8f6ef;border-right:3px solid var(--gold);padding:13px 15px;margin-top:12px;border-radius:8px;line-height:2;font-size:18px;white-space:pre-wrap}.tafsir.show{display:block}
+.searchbar{margin:12px 0 2px}.searchbar input{width:100%}footer{text-align:center;color:var(--muted);padding:28px 15px;font-size:13px}
+@media(max-width:600px){.panel{padding:14px}.player button{flex:1}.ayah{padding:16px 4px}.ayah-actions button{flex:1}}
 </style>
 </head>
 <body>
 <header><div class="brand">✦ بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ ✦</div><div class="hero"><h1>سُورَةُ الْبَقَرَة</h1><p>مصحف المدينة المنورة • رواية حفص عن عاصم • التفسير الميسر</p></div></header>
 <main>
 <section class="panel">
-<h2 class="section-title">مشغل التلاوة</h2>
+<h2>مشغل التلاوة</h2>
 <div class="controls">
- <div><label for="reciter">اختر القارئ</label><select id="reciter"><option>جارٍ تحميل القراء...</option></select></div>
- <div><label for="repeat">تكرار الآية</label><select id="repeat"><option value="1">مرة واحدة</option><option value="2">مرتين</option><option value="3">3 مرات</option><option value="5">5 مرات</option><option value="10">10 مرات</option><option value="0">حتى الإيقاف</option></select></div>
- <div><label for="jump">الانتقال إلى آية</label><input id="jump" type="number" min="1" max="286" placeholder="رقم الآية"></div>
- <div><button id="go">انتقال</button></div>
+<div><label for="reciter">اختر القارئ المصري أو العربي</label><select id="reciter"><option>جارٍ تحميل القراء...</option></select></div>
+<div><label for="repeat">عدد تكرار الآية</label><select id="repeat"><option value="1">مرة واحدة</option><option value="2">مرتان</option><option value="3">3 مرات</option><option value="5">5 مرات</option><option value="10">10 مرات</option><option value="0">حتى الإيقاف</option></select></div>
+<div><label for="jump">الانتقال إلى آية</label><input id="jump" type="number" min="1" max="286" placeholder="رقم الآية"></div>
+<div><button id="go">انتقال إلى الآية</button></div>
 </div>
-<div class="player" style="margin-top:14px">
-<button id="playAll">▶ تشغيل السورة</button><button class="secondary" id="pause">Ⅱ إيقاف مؤقت</button><button class="secondary" id="prev">السابق</button><button class="secondary" id="next">التالي</button>
-</div>
+<div class="player">
+<button id="playAll">▶ تشغيل السورة كاملة</button><button class="secondary" id="pause">Ⅱ إيقاف مؤقت</button><button class="secondary" id="stop">■ إيقاف</button><button class="secondary" id="prev">السابق</button><button class="secondary" id="next">التالي</button>
 <audio id="audio" controls preload="metadata"></audio>
-<a id="downloadMp3" href="#" target="_blank" rel="noopener" class="secondary" style="display:inline-block;width:auto;text-decoration:none;padding:9px 14px;border-radius:10px;margin-top:10px">فتح ملف التلاوة MP3 / حفظه</a>
-<div class="status" id="playerStatus">اختر قارئاً ثم اضغط تشغيل. يمكنك تشغيل السورة كاملة أو الاستماع لكل آية على حدة.</div>
+</div>
+<a id="downloadMp3" class="download" href="#" target="_blank" rel="noopener">⬇ تحميل سورة البقرة بصيغة MP3</a>
+<div class="status" id="playerStatus">اختر القارئ ثم شغّل السورة أو اضغط «استمع للآية» بجانب أي آية. يتوفر تكرار الآية عند دعم التوقيتات من مصدر التلاوة.</div>
 </section>
 <section class="panel">
-<h2 class="section-title">سورة البقرة — الآيات والتفسير</h2>
-<div class="small">اضغط «التفسير» أسفل أي آية لعرض تفسيرها من التفسير الميسر. قد يستغرق تحميل النص لحظات.</div>
+<h2>آيات سورة البقرة والتفسير الميسر</h2>
+<div class="small" id="loadNote">يتم تحميل نص المصحف والتفسير الميسر. اضغط زر «التفسير الميسر» أسفل الآية لعرض تفسيرها المطابق.</div>
+<div class="searchbar"><input id="search" type="search" placeholder="ابحث في آيات السورة..."></div>
 <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
 <div id="verses"><p class="status">جارٍ تحميل آيات سورة البقرة...</p></div>
 </section>
 </main>
-<footer>موقع قرآني تعليمي • النص والتلاوات والتفسير تُحمّل من خدمات قرآنية خارجية. يرجى التحقق من حقوق إعادة النشر قبل إطلاق الموقع تجارياً.</footer>
+<footer>موقع قرآني تعليمي • نص القرآن والتفسير والتلاوات تُحمّل من خدمات خارجية. يرجى مراعاة حقوق أصحاب التسجيلات عند إعادة الاستخدام التجاري.</footer>
 <script>
-const API='https://api.alquran.cloud/v1';
-const MP3='https://www.mp3quran.net/api/v3';
+const API='https://api.alquran.cloud/v1', MP3='https://www.mp3quran.net/api/v3';
 const audio=document.getElementById('audio'), versesBox=document.getElementById('verses');
-let verses=[],tafsirVerses=[],recitations=[],selected=null,current=1,repeatCount=1,done=0,timings=[],mode='ayah';
+let verses=[],tafsirVerses=[],recitations=[],selected=null,current=1,repeatCount=1,played=0,timings=[],mode='whole',segmentEnd=0,segmentStart=0;
 const pad=n=>String(n).padStart(3,'0');
 const status=t=>document.getElementById('playerStatus').textContent=t;
-async function json(url){const r=await fetch(url);if(!r.ok)throw Error('تعذر الاتصال بالخدمة');return r.json()}
-async function loadVerses(){try{const [q,t]=await Promise.all([json(API+'/surah/2/quran-uthmani'),json(API+'/surah/2/ar.muyassar')]);verses=q.data.ayahs;tafsirVerses=t.data.ayahs;renderVerses();document.querySelector('.small').textContent='اضغط «التفسير الميسر» أسفل كل آية لعرض تفسيرها المرتبط برقم الآية.'}catch(e){try{const q=await json(API+'/surah/2/quran-uthmani');verses=q.data.ayahs;renderVerses();document.querySelector('.small').textContent='تعذر تحميل التفسير حالياً؛ نص الآيات متاح. أعد تحميل الصفحة للمحاولة.'}catch(err){versesBox.innerHTML='<p>تعذر تحميل النص حالياً. تحقق من اتصال الإنترنت ثم أعد تحميل الصفحة.</p>'}}}
-function renderVerses(){versesBox.innerHTML='';verses.forEach(v=>{const el=document.createElement('article');el.className='ayah';el.id='ayah-'+v.numberInSurah;el.innerHTML='<div class="ayah-text"></div><div class="ayah-actions"><span class="num">'+v.numberInSurah+'</span><button class="secondary listen">▶ استمع للآية</button><button class="secondary tafsirBtn">التفسير الميسر</button></div><div class="tafsir"></div>';el.querySelector('.ayah-text').textContent=v.text;el.querySelector('.listen').onclick=()=>playAyah(v.numberInSurah);el.querySelector('.tafsirBtn').onclick=()=>toggleTafsir(v.numberInSurah,el.querySelector('.tafsir'));versesBox.appendChild(el)})}
-async function loadReciters(){const sel=document.getElementById('reciter');try{const d=await json(MP3+'/reciters?language=ar&sura=2');recitations=[];(d.reciters||[]).forEach(r=>(r.moshaf||[]).forEach(m=>{if((m.surah_list||'').split(',').includes('2'))recitations.push({name:r.name+' — '+m.name,server:m.server,read:m.id,reciter:r.name})}));sel.innerHTML='';recitations.forEach((x,i)=>{const o=document.createElement('option');o.value=i;o.textContent=x.name;sel.appendChild(o)});if(!recitations.length)throw Error();selected=recitations[0];refreshDownload();sel.onchange=()=>{selected=recitations[+sel.value];refreshDownload();loadTimings()};loadTimings()}catch(e){sel.innerHTML='<option value="">تعذر تحميل قائمة القراء</option>';status('تعذر جلب القراء. يمكنك إعادة تحميل الصفحة للمحاولة.')}}
-async function loadTimings(){if(!selected)return;try{timings=await json(MP3+'/ayat_timing?surah=2&read='+selected.read);timings=Array.isArray(timings)?timings:[]}catch(e){timings=[]}}
-function fileUrl(){return selected.server+pad(2)+'.mp3'}
-function refreshDownload(){const a=document.getElementById('downloadMp3');if(selected){a.href=fileUrl();a.style.opacity='1';a.setAttribute('aria-disabled','false')}else{a.href='#';a.style.opacity='.45';a.setAttribute('aria-disabled','true')}}
-function highlight(n){document.querySelectorAll('.ayah.active').forEach(x=>x.classList.remove('active'));const el=document.getElementById('ayah-'+n);if(el){el.classList.add('active');el.scrollIntoView({behavior:'smooth',block:'center'})}}
-function playAyah(n){if(!selected){status('يرجى اختيار قارئ أولاً');return}current=Math.max(1,Math.min(286,n));done=0;mode='ayah';highlight(current);const t=timings.find(x=>Number(x.ayah)===current);if(t&&t.start_time!=null&&t.end_time!=null){const start=Number(t.start_time)/1000,end=Number(t.end_time)/1000;audio.ontimeupdate=null;const beginSegment=()=>{audio.currentTime=start;audio.play().catch(()=>status('اضغط زر التشغيل داخل مشغل الصوت للسماح بالتشغيل.'))};if(audio.src!==fileUrl()){audio.src=fileUrl();audio.addEventListener('loadedmetadata',beginSegment,{once:true})}else if(audio.readyState>=1){beginSegment()}else{audio.addEventListener('loadedmetadata',beginSegment,{once:true})}audio.ontimeupdate=()=>{if(audio.currentTime>=end){audio.pause();done++;if(repeatCount===0||done<repeatCount){audio.currentTime=start;audio.play().catch(()=>{})}else{audio.ontimeupdate=null;status('انتهت الآية '+current+' — يمكنك الانتقال إلى الآية التالية.')}}};status('القارئ: '+selected.reciter+' • الآية '+current)}else{status('لا تتوفر توقيتات مفصلة لهذا التسجيل؛ سيتم تشغيل السورة كاملة. استخدم أزرار السابق والتالي للتنقل.');audio.src=fileUrl();audio.ontimeupdate=null;audio.play().catch(()=>{})}}
-function playWhole(){if(!selected)return;mode='whole';audio.ontimeupdate=null;audio.src=fileUrl();audio.play().catch(()=>{});status('تشغيل سورة البقرة كاملة بصوت '+selected.reciter)}
-document.getElementById('playAll').onclick=playWhole;document.getElementById('pause').onclick=()=>audio.pause();document.getElementById('prev').onclick=()=>playAyah(Math.max(1,current-1));document.getElementById('next').onclick=()=>playAyah(Math.min(286,current+1));document.getElementById('go').onclick=()=>{const n=Number(document.getElementById('jump').value);if(n>=1&&n<=286)playAyah(n)};document.getElementById('repeat').onchange=e=>repeatCount=Number(e.target.value);audio.onended=()=>{if(mode==='whole')status('انتهت التلاوة.')};
-async function toggleTafsir(n,box){if(box.classList.contains('show')){box.classList.remove('show');return}box.classList.add('show');box.textContent='جارٍ تحميل التفسير...';const v=tafsirVerses.find(x=>x.numberInSurah===n);if(v&&v.text){box.textContent=v.text}else{box.textContent='لم يتوفر تفسير هذه الآية حالياً. تحقق من الاتصال ثم أعد تحميل الصفحة.'}}
+async function getJSON(url){const r=await fetch(url);if(!r.ok)throw Error('HTTP '+r.status);return r.json()}
+async function loadVerses(){
+ try{
+  const [q,t]=await Promise.all([getJSON(API+'/surah/2/quran-uthmani'),getJSON(API+'/surah/2/ar.muyassar')]);
+  verses=q.data.ayahs;tafsirVerses=t.data.ayahs;renderVerses();
+  document.getElementById('loadNote').textContent='تم تحميل آيات سورة البقرة والتفسير الميسر. تفسير كل آية مرتبط برقمها الصحيح.';
+ }catch(e){
+  try{const q=await getJSON(API+'/surah/2/quran-uthmani');verses=q.data.ayahs;renderVerses();document.getElementById('loadNote').textContent='تعذر تحميل التفسير حالياً، لكن نص الآيات متاح. أعد تحميل الصفحة للمحاولة.'}
+  catch(err){versesBox.textContent='تعذر تحميل النص حالياً. تحقق من اتصال الإنترنت ثم أعد تحميل الصفحة.'}
+ }
+}
+function renderVerses(filter=''){
+ versesBox.innerHTML='';
+ const list=verses.filter(v=>!filter||v.text.includes(filter));
+ if(!list.length){versesBox.textContent='لا توجد آيات مطابقة للبحث.';return}
+ list.forEach(v=>{
+  const el=document.createElement('article');el.className='ayah';el.id='ayah-'+v.numberInSurah;
+  const text=document.createElement('div');text.className='ayah-text';text.textContent=v.text;
+  const actions=document.createElement('div');actions.className='ayah-actions';
+  const num=document.createElement('span');num.className='num';num.textContent=v.numberInSurah;
+  const listen=document.createElement('button');listen.className='secondary';listen.textContent='▶ استمع للآية';listen.onclick=()=>playAyah(v.numberInSurah);
+  const tafsirBtn=document.createElement('button');tafsirBtn.className='secondary';tafsirBtn.textContent='التفسير الميسر';
+  const tafsir=document.createElement('div');tafsir.className='tafsir';
+  tafsirBtn.onclick=()=>toggleTafsir(v.numberInSurah,tafsir);
+  actions.append(num,listen,tafsirBtn);el.append(text,actions,tafsir);versesBox.appendChild(el);
+ });
+}
+async function loadReciters(){
+ const sel=document.getElementById('reciter');
+ try{
+  const d=await getJSON(MP3+'/reciters?language=ar&sura=2');recitations=[];
+  (d.reciters||[]).forEach(r=>(r.moshaf||[]).forEach(m=>{
+   if((m.surah_list||'').split(',').includes('2')&&m.server)recitations.push({name:r.name+' — '+m.name,server:m.server,read:m.id,reciter:r.name});
+  }));
+  sel.innerHTML='';
+  recitations.forEach((x,i)=>{const o=document.createElement('option');o.value=i;o.textContent=x.name;sel.appendChild(o)});
+  if(!recitations.length)throw Error('No reciters');
+  selected=recitations[0];refreshDownload();await loadTimings();
+  sel.onchange=async()=>{selected=recitations[Number(sel.value)];refreshDownload();await loadTimings();status('تم اختيار '+selected.reciter)};
+ }catch(e){sel.innerHTML='<option value="">تعذر تحميل القراء</option>';status('تعذر تحميل قائمة القراء من الخدمة الخارجية. أعد تحميل الصفحة للمحاولة.')}
+}
+async function loadTimings(){
+ timings=[];if(!selected)return;
+ try{
+  const d=await getJSON(MP3+'/ayat_timing?surah=2&read='+selected.read);
+  timings=Array.isArray(d)?d:(Array.isArray(d.data)?d.data:(Array.isArray(d.ayat_timing)?d.ayat_timing:[]));
+ }catch(e){timings=[]}
+}
+function fileUrl(){return selected?selected.server+pad(2)+'.mp3':''}
+function refreshDownload(){
+ const a=document.getElementById('downloadMp3');
+ if(selected){a.href=fileUrl();a.download='surah-al-baqarah.mp3';a.style.opacity='1'}else{a.href='#';a.style.opacity='.5'}
+}
+function highlight(n){
+ document.querySelectorAll('.ayah.active').forEach(x=>x.classList.remove('active'));
+ const el=document.getElementById('ayah-'+n);if(el){el.classList.add('active');el.scrollIntoView({behavior:'smooth',block:'center'})}
+}
+function findTiming(n){return timings.find(x=>Number(x.ayah||x.ayah_number||x.ayahNumber)===n)}
+function playAyah(n){
+ if(!selected){status('يرجى اختيار قارئ أولاً');return}
+ current=Math.max(1,Math.min(286,n));played=0;mode='ayah';highlight(current);
+ const t=findTiming(current);
+ if(!t||t.start_time==null||t.end_time==null){
+  status('لا تتوفر توقيتات منفصلة لهذه الآية من مصدر القارئ الحالي؛ سيبدأ تشغيل السورة كاملة. يمكنك اختيار قارئ آخر أو استخدام الانتقال اليدوي.');
+  playWhole(current);return;
+ }
+ segmentStart=Number(t.start_time)/1000;segmentEnd=Number(t.end_time)/1000;
+ const begin=()=>{audio.currentTime=segmentStart;audio.play().catch(()=>status('اضغط تشغيل داخل مشغل الصوت للسماح بالتشغيل.'))};
+ audio.ontimeupdate=checkSegment;
+ if(audio.src!==fileUrl()){audio.src=fileUrl();audio.addEventListener('loadedmetadata',begin,{once:true})}
+ else if(audio.readyState>=1)begin();else audio.addEventListener('loadedmetadata',begin,{once:true});
+ status('القارئ: '+selected.reciter+' • الآية '+current);
+}
+function checkSegment(){
+ if(mode!=='ayah'||audio.currentTime<segmentEnd)return;
+ audio.pause();played++;
+ if(repeatCount===0||played<repeatCount){audio.currentTime=segmentStart;audio.play().catch(()=>{})}
+ else{audio.ontimeupdate=null;status('انتهت الآية '+current+'. استخدم السابق أو التالي للمتابعة.')}
+}
+function playWhole(startAyah){
+ if(!selected)return;mode='whole';audio.ontimeupdate=null;audio.src=fileUrl();
+ const start=findTiming(startAyah||1);
+ const begin=()=>{if(start&&start.start_time!=null)audio.currentTime=Number(start.start_time)/1000;audio.play().catch(()=>{})};
+ if(audio.readyState>=1)begin();else audio.addEventListener('loadedmetadata',begin,{once:true});
+ status('تشغيل سورة البقرة كاملة بصوت '+selected.reciter);
+}
+function toggleTafsir(n,box){
+ if(box.classList.contains('show')){box.classList.remove('show');return}
+ box.classList.add('show');box.textContent='جارٍ تحميل التفسير...';
+ const v=tafsirVerses.find(x=>Number(x.numberInSurah)===n);
+ box.textContent=v&&v.text?v.text:'لم يتوفر تفسير هذه الآية حالياً. تحقق من الاتصال ثم أعد تحميل الصفحة.';
+}
+document.getElementById('playAll').onclick=()=>playWhole(1);
+document.getElementById('pause').onclick=()=>audio.pause();
+document.getElementById('stop').onclick=()=>{audio.pause();audio.currentTime=0;audio.ontimeupdate=null;status('تم إيقاف التلاوة.')};
+document.getElementById('prev').onclick=()=>playAyah(Math.max(1,current-1));
+document.getElementById('next').onclick=()=>playAyah(Math.min(286,current+1));
+document.getElementById('go').onclick=()=>{const n=Number(document.getElementById('jump').value);if(n>=1&&n<=286)playAyah(n);else status('أدخل رقم آية من 1 إلى 286.')};
+document.getElementById('repeat').onchange=e=>repeatCount=Number(e.target.value);
+document.getElementById('search').oninput=e=>renderVerses(e.target.value.trim());
+audio.onended=()=>{if(mode==='whole')status('انتهت تلاوة سورة البقرة.')};
 loadVerses();loadReciters();
 </script>
 </body></html>
